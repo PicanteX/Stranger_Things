@@ -36,28 +36,12 @@ const Main = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/Login">
-          <Login setToken={setToken} />
-        </Route>
-        <Route path="/SignUp">
-          <SignUp setToken={setToken} />
-        </Route>
-        <Route path="/CreatePost">
-          <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
-        </Route>
-        <Route path="/Profile">
-          <Profile posts={posts} setPosts={setPosts} userObj={userObj} />
-        </Route>
-        <Route path="/">
-          <Posts
-            setToken={setToken}
-            postId={postId}
-            setPostId={setPostId}
-            posts={posts}
-            setPosts={setPosts}
-          />
-        </Route>
+        <Route path="/Login" element={<Login />} setToken={setToken}/>
+        <Route path="/SignUp" element={<SignUp />} setToken={setToken}/>
+        <Route path="/CreatePost" element={<CreatePost />} setToken={setToken} setPosts={setPosts} posts={posts}/>
+        <Route path="/Profile" element={<Profile />} posts={posts} setPosts={setPosts} userObj={userObj}/>
       </Routes>
+      <Posts posts={posts} setPosts={setPosts} setToken={setToken} postId={postId} setPostId={setPostId} />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { newPost } from "../api/posts";
-import { useNavigate } from "react-router-dom";
 
 const CreatePost = ({ posts, setPosts }) => {
   const [title, setTitle] = useState([]);
@@ -8,10 +7,9 @@ const CreatePost = ({ posts, setPosts }) => {
   const [price, setPrice] = useState("");
   const [location, setLocation] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
-  let navigate = useNavigate();
 
-  const userSubmit = async (e) => {
-    e.preventDefault();
+  const userSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       console.log(localStorage.getItem("token"));
@@ -35,11 +33,10 @@ const CreatePost = ({ posts, setPosts }) => {
     setDescription("");
     setPrice("");
     setWillDeliver(false);
-    navigate.push("/");
   };
   return (
-    <div>
-      <form className="postCard" onSubmit={userSubmit}>
+    <div className="createPostCard">
+      <form className="createCard" onSubmit={userSubmit}>
         <input
           className="title"
           type="text"

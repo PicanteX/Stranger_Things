@@ -24,7 +24,7 @@ export const newPost = async (
   location,
   willDeliver
 ) => {
-  const response = await fetch(`${BASE_URL}/api${key}/posts`, {
+  const result = await fetch(`${BASE_URL}/api${key}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export const newPost = async (
       },
     }),
   });
-  const data = await response.json();
+  const data = await result.json();
   console.log(data, "data");
 
   return data;
@@ -48,20 +48,20 @@ export const newPost = async (
 export const removePost = async (postId, token) => {
   console.log("PostId: ", postId);
   console.log(`${BASE_URL}/api${key}/posts/${postId}`);
-  const response = await fetch(`${BASE_URL}/api${key}/posts/${postId}`, {
+  const result = await fetch(`${BASE_URL}/api${key}/posts/${postId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
-  const data = await response.json();
+  const data = await result.json();
   console.log("removePost: ", data);
   return data;
 };
 
 export const sendMessage = async (postId, token, content) => {
-  const response = await fetch(
+  const result = await fetch(
     `${BASE_URL}/api${key}/posts/${postId}/messages`,
     {
       method: "POST",
@@ -76,7 +76,7 @@ export const sendMessage = async (postId, token, content) => {
       }),
     }
   );
-  const data = await response.json();
+  const data = await result.json();
   console.log(data, "data");
 
   return data;

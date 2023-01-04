@@ -6,8 +6,8 @@ const WriteMessage = ({ postId, setWriteMessage, writeMessage }) => {
   const button = writeMessage.button;
   const storedToken = localStorage.getItem("token");
 
-  const userSubmit = async (e) => {
-    e.preventDefault();
+  const userSubmit = async (event) => {
+    event.preventDefault();
     try {
       const result = await sendMessage(postId, storedToken, message);
       if (result.success) {
@@ -20,7 +20,7 @@ const WriteMessage = ({ postId, setWriteMessage, writeMessage }) => {
   };
 
   const ternaryFunction = () => {
-    if (!button && writeMessage.idx == postId) {
+    if (!button && writeMessage.idx === postId) {
       return false;
     }
     return true;

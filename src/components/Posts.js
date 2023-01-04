@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DeletePost, WriteMessage } from "./index.js";
-import { fetchPosts } from "../api/posts";
 
 const Post = ({ setToken, posts, setPosts }) => {
   const [writeMessage, setWriteMessage] = useState({
@@ -25,18 +24,11 @@ const Post = ({ setToken, posts, setPosts }) => {
 
   const postsToDisplay = filteredPosts.length ? filteredPosts : posts;
 
-  useEffect(() => {
-    const getAllPosts = async () => {
-      const allPosts = await fetchPosts();
-      setPosts(allPosts.reverse());
-    };
-    getAllPosts();
-  }, []);
   return (
     <>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
+        onSubmit={(event) => {
+          event.preventDefault();
           const filteredPosts = posts.filter((post) =>
             postMatches(post, searchTerm)
           );
@@ -48,37 +40,39 @@ const Post = ({ setToken, posts, setPosts }) => {
           type="text"
           placeholder="Search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value)}
         ></input>
         <button type="submit">Search</button>
       </form>
-      <h1>Posts</h1>
+      <h1 classsName="postHead">Posts</h1>
       {localStorage.getItem("token") ? (
         <Link to="CreatePost">
           <button type="button">Create Post</button>
         </Link>
       ) : null}
-      <div class="cardField">
-        {postsToDisplay.map((post, i) => {
+      <div className="cardField">
+        {postsToDisplay?.map((post, i) => {
           console.log("Post: ", post);
           return (
             <div className="postCard" key={i}>
               <div className="title">{post.title}</div>
               <div className="author">
-                Owner:
+                Owner: 
                 <div id="author">{post.author.username}</div>
               </div>
               <div className="description">
-                Description:
+                Description: 
                 <div id="description">{post.description}</div>
               </div>
               <div className="location">
-                Location:
+                Location: 
                 <div id="location">{post.location}</div>
               </div>
               <div className="priceAndWD">
-                <div className="price">Price:</div>
+                <div className="price">
+                  Price:
                 <div id="price">{post.price}</div>
+                </div>
                 <div className="willDeliver">
                   {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
                 </div>

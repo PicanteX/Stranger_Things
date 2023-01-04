@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { fetchLoginResults } from "../api/users";
-import { useNavigate } from "react-router-dom";
 
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  let navigate = useNavigate();
 
-  const userSubmit = async (e) => {
-    e.preventDefault();
+  const userSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       const result = await fetchLoginResults(username, password);
@@ -22,7 +20,6 @@ const Login = ({ setToken }) => {
     } finally {
       setUsername("");
       setPassword("");
-      navigate.push("/");
     }
   };
 
@@ -41,7 +38,7 @@ const Login = ({ setToken }) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></input>
-        <button type="submit">Login</button>
+        <button type="submit">Login!</button>
       </form>
     </div>
   );

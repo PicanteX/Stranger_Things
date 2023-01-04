@@ -18,7 +18,7 @@ export const fetchLoginResults = async (username, password) => {
 };
 
 export const registerUser = async (username, password) => {
-  const response = await fetch(`${BASE_URL}/api${key}/users/register`, {
+  const result = await fetch(`${BASE_URL}/api${key}/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,17 +30,17 @@ export const registerUser = async (username, password) => {
       },
     }),
   });
-  const data = await response.json();
+  const data = await result.json();
   return data;
 };
 
 export const fetchUser = async (token) => {
-  const response = await fetch(`${BASE_URL}/api${key}/users/me`, {
+  const result = await fetch(`${BASE_URL}/api${key}/users/me`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
-  const data = await response.json();
+  const data = await result.json();
   return data;
 };

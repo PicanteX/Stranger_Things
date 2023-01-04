@@ -1,15 +1,15 @@
 import React from "react";
 
 const LogOut = () => {
-  const handleLogOut = async (e) => {
-    e.preventDefault();
+  const handleLogOut = async (event) => {
+    event.preventDefault();
     localStorage.clear();
     window.location.reload();
   };
 
   return (
     <button id="log" onClick={handleLogOut} type="button">
-      Logout
+      Logout!
     </button>
   );
 };
